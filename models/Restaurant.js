@@ -1,7 +1,8 @@
 const {db} = require('../db');
 const { Sequelize, DataTypes } = require('sequelize');
+const queryInterface = db.getQueryInterface();
 
-const Restaurant = db.define('restaurant', {
+const Restaurant = db.define('restaurants', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -12,9 +13,6 @@ const Restaurant = db.define('restaurant', {
     },
     cuisine: {
         type: DataTypes.STRING,
-    },
-    rating: {
-        type: DataTypes.INTEGER,
     }
 })
 
@@ -25,10 +23,18 @@ async function main() {
         name: "nandos",
         location: "London",
         cuisine: "English",
-        rating: 4
     })
+
+    await Restaurant.create({
+        name: "kfc",
+        location: "London",
+        cuisine: "American",
+    })
+    await queryInterface.addColumn(
+        'restaurants', 'rating', { type: DataTypes.INTEGER, allowNull: true}
+    );
 }
 
-// main()
+main()
 
 module.exports = {Restaurant};
