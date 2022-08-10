@@ -12,6 +12,9 @@ const Restaurant = db.define('restaurant', {
     },
     cuisine: {
         type: DataTypes.STRING,
+    },
+    rating: {
+        type: DataTypes.INTEGER,
     }
 })
 
@@ -21,7 +24,8 @@ async function main() {
     await Restaurant.create({
         name: "nandos",
         location: "London",
-        cuisine: "English"
+        cuisine: "English",
+        rating: 4
     })
 }
 

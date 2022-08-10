@@ -20,11 +20,13 @@ describe('Restaurant and Menu Models', () => {
         const restaurant1 = await Restaurant.create({
             name: 'AppleBees',
             location: 'Texas',
-            cuisine: 'FastFood'
+            cuisine: 'FastFood',
+            rating: 2
           })
         expect(restaurant1.name).toEqual('AppleBees')
         expect(restaurant1.location).toEqual('Texas')
         expect(restaurant1.cuisine).toEqual('FastFood')
+        expect(restaurant1.rating).toEqual(2)
     });
 
     test('can create a Menu', async () => {
