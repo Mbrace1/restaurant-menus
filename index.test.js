@@ -36,31 +36,31 @@ describe('Restaurant and Menu Models', () => {
     });
 
     test('can find Restaurants', async () => {
-        const restaurant1 = await Restaurant.create({
+        // should find all restaurants not just one
+        await Restaurant.create({
             name: 'AppleBees',
             location: 'London',
             cuisine: 'FastFood'
           })
         
-        const findRestaurant = await Restaurant.findOne({ 
-            where: { name: 'AppleBees' } 
-        });
-        expect(findRestaurant).not.toBeNull()
+        const findRestaurant = await Restaurant.findAll();
+        // added restaurant in earlier test
+        expect(findRestaurant.length).toBe(2)
     });
 
     test('can find Menus', async () => {
-        const menu1 = await Menu.create({
-            title: 'Breakfast',
+        // should find all menus not just one
+        await Menu.create({
+            title: 'Lunch',
           })
         
-        const findMenu = await Menu.findOne({ 
-            where: { title: 'Breakfast' } 
-        });
-        expect(findMenu.title).toBe("Breakfast")
+        const findMenu = await Menu.findAll();
+        // added menu in earlier test
+        expect(findMenu.length).toBe(2)
     });
 
     test('can delete Restaurants', async () => {
-        // TODO - write test
+        
         const restaurant1 = await Restaurant.create({
             name: 'AppleBees',
             location: '',
